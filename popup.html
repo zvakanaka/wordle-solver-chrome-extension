@@ -1,0 +1,68 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puzzle Automator</title>
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap.min.css" />
+  <style>
+    body {
+      width: 250px;
+      padding: 20px;
+      background: var(--bs-gray-dark);
+      color: var(--bs-gray-200);
+    }
+
+    div:not(:last-of-type)>button {
+      margin-top: 1em;
+      margin-bottom: 1.5em;
+    }
+
+    .hundo {
+      width: 100%;
+    }
+
+    h2 {
+      margin-bottom: 0.25em;
+    }
+    .no-right-border {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Puzzle Automator</h1>
+  <div class="page-not-supported">
+    <div class="tip">
+      Go to <a target="supported-tab" href="https://www.powerlanguage.co.uk/wordle">Wordle</a> to use this extension.
+    </div>
+  </div>
+
+  <div class="loading">Loading...</div>
+
+  <div class="ui" hidden>
+    <div class="input-group hundo">
+      <div class="hundo">
+        <button type="button" disabled class="hundo clear-local-storage-button btn btn-outline-danger btn-block">Clear All
+          Game History</button>
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text no-right-border" id="inputGroup-sizing-sm">Start Word</span>
+        </div>
+        <input type="text" class="form-control start-word-input" aria-label="Start Word" aria-describedby="inputGroup-sizing-sm" value="would">
+      </div>
+      <div class="hundo">
+        <button type="button" disabled class="hundo automate-puzzle-button btn btn-primary btn-lg btn-block">Automate
+          Puzzle</button>
+      </div>
+
+    </div>
+  </div>
+</body>
+<script src="contentScripts/utils.js"></script>
+<script src="popup.js"></script>
+
+</html>
