@@ -1,9 +1,9 @@
 # Wordle Automator
 Solve Wordle with an algorithm.  
 
-[Chrome Extension in Chrome Web Store](https://chrome.google.com/webstore/detail/wordle-solver-can-you-bea/cobhbmncjhlgmfndhdloojjojcnbmlic)  
+[Go here](https://chrome.google.com/webstore/detail/wordle-solver-can-you-bea/cobhbmncjhlgmfndhdloojjojcnbmlic) to get the Chrome Extension.  
 
-The wordlist used is sorted by frequency and from [aspell.net's Google Books corpus data](http://app.aspell.net/lookup-freq).
+The word list used is sorted by frequency and from [aspell.net's Google Books corpus data](http://app.aspell.net/lookup-freq).
 
 ![screenshot](./screenshots/screenshot-1.jpg)
 
