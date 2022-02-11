@@ -15,7 +15,12 @@
 
     div:not(:last-of-type)>button {
       margin-top: 1em;
-      margin-bottom: 1.5em;
+    }
+    
+    .clear-today-button {
+      margin-top: 1em;
+      margin-bottom: 2.5em;
+      visibility: hidden;
     }
 
     .hundo {
@@ -36,7 +41,7 @@
   <h1>Puzzle Automator</h1>
   <div class="page-not-supported">
     <div class="tip">
-      Go to <a target="supported-tab" href="https://www.powerlanguage.co.uk/wordle">Wordle</a> to use this extension.
+      Go to <a target="supported-tab" href="https://www.nytimes.com/games/wordle">Wordle</a> to use this extension.
     </div>
   </div>
 
@@ -47,6 +52,7 @@
       <div class="hundo">
         <button type="button" disabled class="hundo clear-local-storage-button btn btn-outline-danger btn-block">Clear All
           Game History</button>
+        <button type="button" disabled class="hundo clear-today-button btn btn-outline-warning btn-block">Clear Today's Game History</button>
       </div>
       <div class="input-group input-group-sm mb-3">
         <div class="input-group-prepend">
@@ -62,6 +68,7 @@
     </div>
   </div>
 </body>
+<script src="vendor/bootstrap.bundle.min.js"></script>
 <script src="contentScripts/utils.js"></script>
 <script src="popup.js"></script>
 

@@ -1,3 +1,5 @@
+const ONE_DAY = 24 * 60 * 60 * 1000
+
 // like tillTrue, but with a random wait first and fails after 10 seconds
 async function till(callback, timeoutMS = 10000) {
   await timeout(getRandomInt(1000, 5000))

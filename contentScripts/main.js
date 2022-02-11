@@ -13,6 +13,25 @@ chrome.runtime.onMessage.addListener(async (message, sender, response) => {
     }
   }
 
+  if (message.from === 'popup' && message.type === 'CLEAR_TODAY') {
+    const localStorageState = window.localStorage.getItem('nyt-wordle-state') && JSON.parse(window.localStorage.getItem('nyt-wordle-state'))
+    const yesterday = Date.now() - ONE_DAY
+    localStorageState.lastCompletedTs = localStorageState.lastPlayedTs = yesterday
+    delete localStorageState.gameStatus
+    delete localStorageState.rowIndex
+    delete localStorageState.solution
+    delete localStorageState.boardState
+    delete localStorageState.evaluations
+    
+    window.localStorage.setItem('nyt-wordle-state', JSON.stringify(localStorageState))
+
+    if (message.refreshAfter) {
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
+    }
+  }
+
   if (message.from === 'popup' && message.type === 'CHECK_TAB_SUPPORTED') {
     var url = window.location.href;
     response(message.sites.some(site => url.startsWith(site)));
@@ -141,19 +160,46 @@ async function automatePuzzle(startWord) {
 
   async function solve() {
     const possibilities = await clickKeys(startWord, fiveLetterWords)
+    if (possibilities.length === 1) {
+      await timeout(1000)
+      await clickKeys(startWord, fiveLetterWords)
+      return 1
+    }
     await timeout(1000)
     const possibilities2 = await clickKeys(possibilities[0], possibilities)
+    if (possibilities2.length === 1) {
+      await timeout(1000)
+      await clickKeys(possibilities2[0], possibilities2)
+      return 2
+    }
     await timeout(1000)
     const possibilities3 = await clickKeys(possibilities2[0], possibilities2)
+    if (possibilities3.length === 1) {
+      await timeout(1000)
+      await clickKeys(possibilities3[0], possibilities3)
+      return 3
+    }
     await timeout(1000)
     const possibilities4 = await clickKeys(possibilities3[0], possibilities3)
+    if (possibilities4.length === 1) {
+      await timeout(1000)
+      await clickKeys(possibilities4[0], possibilities4)
+      return 4
+    }
     await timeout(1000)
     const possibilities5 = await clickKeys(possibilities4[0], possibilities4)
+    if (possibilities5.length === 1) {
+      await timeout(1000)
+      await clickKeys(possibilities5[0], possibilities5)
+      return 5
+    }
     await timeout(1000)
     const possibilities6 = await clickKeys(possibilities5[0], possibilities5)
-    console.log('possibilities6', possibilities6)
+    if (possibilities6.length === 1) {
+      return 6
+    }
   }
-  chrome.runtime.sendMessage({ funcName: 'startAutomating', args: { exampleArg: 1 } })
-  await solve()
-  chrome.runtime.sendMessage({ funcName: 'completeAutomating', args: { exampleArg: 1 } })
+  chrome.runtime.sendMessage({ funcName: 'startAutomating', args: {} })
+  const tries = await solve()
+  chrome.runtime.sendMessage({ funcName: 'completeAutomating', args: { tries } })
 }

@@ -10,9 +10,9 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.powerlanguage.co.uk/wordle*"],
+      "matches": ["https://www.nytimes.com/games/wordle*"],
       "js": [
-        "vendor/bootstrap.min.js",
+        "vendor/bootstrap.bundle.min.js",
         "contentScripts/wordlist.js",
         "contentScripts/utils.js",
         "contentScripts/main.js"

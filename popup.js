@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const els = qso({
   automatePuzzleButton: '.automate-puzzle-button',
   clearLocalStorageButton: '.clear-local-storage-button',
+  clearTodayButton: '.clear-today-button',
   startWordInput: '.start-word-input',
   supportedSiteAnchor: '[target="supported-tab"]',
 })
@@ -35,10 +36,23 @@ function showUI(supported) {
         });
       });
     })
+
+    els.clearTodayButton.addEventListener('click', () => {
+      window.localStorage.clear()
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {
+          from: 'popup',
+          type: 'CLEAR_TODAY',
+          refreshAfter: true,
+        });
+      });
+    })
     els.clearLocalStorageButton.disabled = false
+    els.clearTodayButton.disabled = false
     els.automatePuzzleButton.addEventListener('click', () => {
       window.localStorage.setItem('startWord', els.startWordInput.value)
       sendAutomatePuzzle(els.startWordInput.value)
+      els.automatePuzzleButton.disabled = true
     })
     els.automatePuzzleButton.disabled = false
   }
@@ -71,6 +85,7 @@ function startAutomating() {
   console.log('startAutomating')
 }
 
-function completeAutomating() {
-  console.log('completeAutomating')
+function completeAutomating(requestArgs) {
+  console.log(`completeAutomating took ${requestArgs.tries} tries`)
+  els.automatePuzzleButton.disabled = false
 }
