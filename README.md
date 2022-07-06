@@ -15,5 +15,5 @@ User customization of the algorithm through the extension will likely be added i
 This is an unofficial extension.
 
 ## Thank You
-Icon from [Rohim on flaticon.com](https://www.flaticon.com/premium-icon/letter-w_4553026?related_id=4553026) (free for personal and commercial purpose with attribution)
+Icon from [popo2021 on flaticon.com](https://www.flaticon.com/free-icon/letter-w_7312338) (free for personal and commercial purpose with attribution)
 
