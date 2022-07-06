@@ -64,3 +64,18 @@ function sequentialPromiseAll(promise, args, n, updateCb) {
   });
 }
 
+// https://codepen.io/zvakanaka/pen/QWOxJoN
+function isToday(date) {
+  const today = new Date()
+  const jsDate = new Date(date)
+  
+  return (
+    today.getDate() === jsDate.getDate() && 
+    today.getFullYear() === jsDate.getFullYear() && 
+    today.getMonth() === jsDate.getMonth()
+  )
+}
+
+function clone(obj) {
+  return structuredClone(obj)
+}

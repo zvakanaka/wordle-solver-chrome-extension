@@ -4819,3 +4819,21 @@ function getFiveLetterWords() {
     "wazoo"
   ]
 }
+
+function getLetterFrequencies() {
+  // https://stackoverflow.com/a/72773057/4151489
+  const sortObjectByKeys = (object) => Object.fromEntries(
+    Object.entries(object).sort(([k1], [k2]) => k1 < k2 ? -1 : 1)
+  )
+  const letterFrequencies = getFiveLetterWords()
+    .reduce((acc, cur) => {
+      cur.split('')
+        .forEach(letter => {
+          if (acc[letter]) acc[letter]++;
+          else acc[letter] = 1;
+        });
+      return acc;
+    }, {})
+
+    return sortObjectByKeys(letterFrequencies)
+}

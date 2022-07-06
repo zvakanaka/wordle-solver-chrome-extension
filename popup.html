@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Puzzle Automator</title>
+  <title>Wordle Solver</title>
   <link rel="stylesheet" type="text/css" href="vendor/bootstrap.min.css" />
   <style>
     body {
@@ -19,8 +19,10 @@
     
     .clear-today-button {
       margin-top: 1em;
+      margin-bottom: 1em;
+    }
+    .clear-today-button + * {
       margin-bottom: 2.5em;
-      visibility: hidden;
     }
 
     .hundo {
@@ -38,36 +40,38 @@
 </head>
 
 <body>
-  <h1>Puzzle Automator</h1>
+  <h1>Wordle Solver</h1>
   <div class="page-not-supported">
     <div class="tip">
       Go to <a target="supported-tab" href="https://www.nytimes.com/games/wordle">Wordle</a> to use this extension.
     </div>
   </div>
 
-  <div class="loading">Loading...</div>
-
   <div class="ui" hidden>
     <div class="input-group hundo">
       <div class="hundo">
-        <button type="button" disabled class="hundo clear-local-storage-button btn btn-outline-danger btn-block">Clear All
+        <button style="margin-bottom: 14px" type="button" disabled class="hundo clear-local-storage-button btn btn-outline-danger btn-block">Clear All
           Game History</button>
-        <button type="button" disabled class="hundo clear-today-button btn btn-outline-warning btn-block">Clear Today's Game History</button>
+        <button style="display: none;" type="button" disabled class="hundo clear-today-button btn btn-outline-warning btn-block">Clear Today's Game History</button>
+        <div style="display: none;" class="alert alert-warning clear-today-message" role="alert">
+          Cannot clear today's game history until 1 day has passed since last play while extension was installed.
+        </div>
       </div>
       <div class="input-group input-group-sm mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text no-right-border" id="inputGroup-sizing-sm">Start Word</span>
         </div>
-        <input type="text" class="form-control start-word-input" aria-label="Start Word" aria-describedby="inputGroup-sizing-sm" value="would">
+        <input type="text" class="form-control start-word-input" aria-label="Start Word" aria-describedby="inputGroup-sizing-sm" value="tears">
       </div>
       <div class="hundo">
         <button type="button" disabled class="hundo automate-puzzle-button btn btn-primary btn-lg btn-block">Automate
-          Puzzle</button>
+          Wordle</button>
       </div>
 
     </div>
   </div>
 </body>
+<script src="vendor/browser-polyfill.min.js"></script>
 <script src="vendor/bootstrap.bundle.min.js"></script>
 <script src="contentScripts/utils.js"></script>
 <script src="popup.js"></script>
